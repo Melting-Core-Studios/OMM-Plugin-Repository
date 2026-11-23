@@ -29,6 +29,9 @@ export function publish(id,{keyFile=process.env.PLUGIN_SIGNING_PRIVATE_KEY_FILE,
  const publicKey=crypto.createPublicKey(signingKey).export({format:'der',type:'spki'}).toString('base64');
  const {bytes,manifest,runtime}=build(id);const repoPath=path.join(base,'repo.json');
  const repo=fs.existsSync(repoPath)?readJSON(repoPath):{schema:REPO_SCHEMA,generatedAt:'',keyId,plugins:[],signature:''};
+ const categories=readJSON(path.join(root,'metadata','categories.json'));
+ const category=categories[id];
+ if(!['network','monitoring','devices','utilities','other'].includes(category))throw Error(`Missing or invalid category for ${id}; add it to metadata/categories.json before publishing`);
  const trustedPath=path.join(base,'keys','trusted-keys.json');
  const trusted=fs.existsSync(trustedPath)?readJSON(trustedPath):{};
  if(trusted[keyId]&&trusted[keyId]!==publicKey)throw Error('Publisher key does not match pinned key ID; use an explicit key rotation');
@@ -40,7 +43,8 @@ export function publish(id,{keyFile=process.env.PLUGIN_SIGNING_PRIVATE_KEY_FILE,
  if(fs.existsSync(target))throw Error('Immutable package already exists');
  const packageMeta={url:rel,sha256:crypto.createHash('sha256').update(bytes).digest('hex'),bytes:bytes.length,keyId,signature:crypto.sign(null,bytes,signingKey).toString('base64')};
  const version={version:manifest.version,channel:'stable',manifest,api:{min:manifest.apiVersion,max:manifest.apiVersion},permissions:runtime.permissions,package:packageMeta,publisher:manifest.publisher,capabilities:manifest.capabilities};
- if(!plugin){plugin={id,latest:manifest.version,versions:[]};repo.plugins.push(plugin);}
+ if(!plugin){plugin={id,category,latest:manifest.version,versions:[]};repo.plugins.push(plugin);}
+ else plugin.category=category;
  plugin.versions.push(version);plugin.versions.sort((a,b)=>compareVersion(a.version,b.version));plugin.latest=plugin.versions.filter(v=>v.channel==='stable').at(-1).version;
  repo.plugins.sort((a,b)=>a.id.localeCompare(b.id));repo.generatedAt=new Date().toISOString();
  repo.signature=crypto.sign(null,Buffer.from(canonicalJson(Object.fromEntries(Object.entries(repo).filter(([k])=>k!=='signature')))),signingKey).toString('base64');

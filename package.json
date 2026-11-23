@@ -2,6 +2,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "test": "node scripts/test-all.mjs"
+    "test": "node scripts/test-all.mjs",
+    "update:categories": "node scripts/update-categories.mjs"
   }
 }

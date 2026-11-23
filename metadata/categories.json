@@ -1,0 +1,14 @@
+{
+  "cisco.meraki": "network",
+  "example.synthetic": "utilities",
+  "extreme.cloudiq": "network",
+  "fortinet.fortigate": "network",
+  "fortinet.fortimanager": "network",
+  "generic.signed-webhook": "monitoring",
+  "juniper.mist": "network",
+  "librenms.devices": "monitoring",
+  "mikrotik.routeros": "network",
+  "prometheus.alertmanager": "monitoring",
+  "ubiquiti.unifi": "network",
+  "zabbix.webhook": "monitoring"
+}

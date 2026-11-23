@@ -7,6 +7,7 @@ export const REPO_SCHEMA='open-map-monitor.repository/v1';
 const ID=/^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$/;
 const HEX=/^[0-9a-f]{64}$/i;
 const SEMVER=/^\d+\.\d+\.\d+(?:-[\da-z.-]+)?$/i;
+const CATEGORIES=new Set(['network','monitoring','devices','utilities','other']);
 const error=(message,status=422)=>Object.assign(new Error(message),{status});
 function urlOnlyHttps(value){const u=new URL(value);if(u.protocol!=='https:'||u.username||u.password||u.hash||!u.hostname)throw error('Repository requires HTTPS and no URL credentials');return u;}
 function edKey(value){const key=crypto.createPublicKey({key:Buffer.from(value,'base64'),format:'der',type:'spki'});if(key.asymmetricKeyType!=='ed25519')throw error('Trusted key must be Ed25519');return key;}
@@ -23,6 +24,7 @@ export function verifyRepository(data,keys,rootUrl){
  const base=urlOnlyHttps(rootUrl);const prefix=new URL('.',base).pathname;const ids=new Set();const items=[];
  for(const plugin of data.plugins){
   if(!ID.test(plugin.id)||ids.has(plugin.id)||!plugin.versions?.length||plugin.versions.length>70)throw error('Invalid or duplicate plugin ID');ids.add(plugin.id);
+  if(plugin.category!==undefined&&!CATEGORIES.has(plugin.category))throw error('Invalid signed plugin category');
   const versions=new Set();let latest='0.0.0';
   for(const v of plugin.versions){
    if(!SEMVER.test(v.version)||versions.has(v.version)||!['stable','beta'].includes(v.channel))throw error('Duplicate or invalid plugin release');versions.add(v.version);
@@ -37,7 +39,7 @@ export function verifyRepository(data,keys,rootUrl){
    if(packageUrl.origin!==base.origin||!packageUrl.pathname.startsWith(prefix))throw error('Package URL must stay on trusted repository origin');
    if(compareVersion(v.version,latest)>0&&v.channel==='stable')latest=v.version;
    // The signed repository includes all package metadata and manifests.
-   items.push({manifest,signature:data.signature,package:v.package,packageUrl:packageUrl.href,permissions:v.permissions,release:v});
+   items.push({manifest,category:plugin.category||null,signature:data.signature,package:v.package,packageUrl:packageUrl.href,permissions:v.permissions,release:v});
   }
   if(plugin.latest!==latest)throw error(`Incorrect latest release for ${plugin.id}`);
  }

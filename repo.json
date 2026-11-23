@@ -1,6 +1,6 @@
 {
   "schema": "open-map-monitor.repository/v1",
-  "generatedAt": "2026-11-23T13:17:46.523Z",
+  "generatedAt": "2026-11-23T14:42:22.994Z",
   "keyId": "community-2026-11",
   "plugins": [
     {
@@ -67,7 +67,8 @@
             "coordinates"
           ]
         }
-      ]
+      ],
+      "category": "network"
     },
     {
       "id": "example.synthetic",
@@ -151,7 +152,8 @@
             "device-status"
           ]
         }
-      ]
+      ],
+      "category": "utilities"
     },
     {
       "id": "extreme.cloudiq",
@@ -217,7 +219,8 @@
             "coordinates"
           ]
         }
-      ]
+      ],
+      "category": "network"
     },
     {
       "id": "fortinet.fortigate",
@@ -282,7 +285,8 @@
             "device-status"
           ]
         }
-      ]
+      ],
+      "category": "network"
     },
     {
       "id": "fortinet.fortimanager",
@@ -349,7 +353,8 @@
             "sites"
           ]
         }
-      ]
+      ],
+      "category": "network"
     },
     {
       "id": "generic.signed-webhook",
@@ -407,7 +412,8 @@
             "addresses"
           ]
         }
-      ]
+      ],
+      "category": "monitoring"
     },
     {
       "id": "juniper.mist",
@@ -499,7 +505,8 @@
             "coordinates"
           ]
         }
-      ]
+      ],
+      "category": "network"
     },
     {
       "id": "librenms.devices",
@@ -562,7 +569,8 @@
             "addresses"
           ]
         }
-      ]
+      ],
+      "category": "monitoring"
     },
     {
       "id": "mikrotik.routeros",
@@ -633,7 +641,8 @@
             "device-status"
           ]
         }
-      ]
+      ],
+      "category": "network"
     },
     {
       "id": "prometheus.alertmanager",
@@ -688,7 +697,8 @@
             "device-status"
           ]
         }
-      ]
+      ],
+      "category": "monitoring"
     },
     {
       "id": "ubiquiti.unifi",
@@ -748,7 +758,8 @@
             "coordinates"
           ]
         }
-      ]
+      ],
+      "category": "network"
     },
     {
       "id": "zabbix.webhook",
@@ -810,8 +821,9 @@
             "device-status"
           ]
         }
-      ]
+      ],
+      "category": "monitoring"
     }
   ],
-  "signature": "UxwQQhA0EKn+fZYmbIYwrYPlnNXN+ezuzaCcmd/+wSRpJNk/SnP1bhDsaLgQeIh+Afva+NwnbggDV+fuau8NDA=="
+  "signature": "juVirTrb9ShuqHmKxeNS6A3DuJXhqzGt6A1Dr9U4IyUxs+PFL/YlKiZA5jSHBs/i0JhM92g56OC+nfyUP5/lAw=="
 }
