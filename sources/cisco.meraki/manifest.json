@@ -1,0 +1,29 @@
+{
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "id": "cisco.meraki",
+  "name": "Cisco Meraki",
+  "publisher": "Open Map Monitor Community",
+  "version": "1.0.0",
+  "transport": "webhook-v1",
+  "capabilities": [
+    "device-status",
+    "sites",
+    "addresses",
+    "coordinates"
+  ],
+  "description": "Meraki Dashboard organization networks and device status polling; preserves verified device addresses and coordinates when returned.",
+  "configFields": [
+    {
+      "key": "orgId",
+      "label": "Organization ID",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "apiKey",
+      "label": "Meraki Dashboard API key",
+      "type": "password",
+      "required": true
+    }
+  ]
+}

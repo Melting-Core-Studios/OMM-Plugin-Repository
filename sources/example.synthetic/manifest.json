@@ -1,0 +1,14 @@
+{
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "id": "example.synthetic",
+  "name": "Synthetic Reference Monitor",
+  "publisher": "Open Map Monitor Community",
+  "version": "1.0.1",
+  "transport": "webhook-v1",
+  "capabilities": [
+    "alerts",
+    "device-status"
+  ],
+  "description": "Offline executable reference adapter for local development and integration tests.",
+  "configFields": []
+}

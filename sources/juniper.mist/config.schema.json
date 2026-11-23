@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "host": {
+      "type": "string"
+    },
+    "orgId": {
+      "type": "string"
+    },
+    "apiToken": {
+      "type": "string"
+    },
+    "webhookSecret": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

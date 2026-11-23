@@ -1,0 +1,42 @@
+{
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "id": "juniper.mist",
+  "name": "Juniper Mist",
+  "publisher": "Open Map Monitor Community",
+  "version": "1.0.0",
+  "transport": "webhook-v1",
+  "capabilities": [
+    "alerts",
+    "device-status",
+    "sites",
+    "addresses",
+    "coordinates"
+  ],
+  "description": "Mist org inventory, device connectivity, site address discovery and signed HMAC webhook receiver.",
+  "configFields": [
+    {
+      "key": "host",
+      "label": "API host",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "orgId",
+      "label": "Organization ID",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "apiToken",
+      "label": "API token",
+      "type": "password",
+      "required": true
+    },
+    {
+      "key": "webhookSecret",
+      "label": "Webhook signing secret",
+      "type": "password",
+      "required": false
+    }
+  ]
+}

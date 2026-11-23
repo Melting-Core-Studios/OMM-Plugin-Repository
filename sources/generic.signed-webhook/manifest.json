@@ -1,0 +1,23 @@
+{
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "id": "generic.signed-webhook",
+  "name": "Signed JSON Webhook",
+  "publisher": "Open Map Monitor Community",
+  "version": "1.0.0",
+  "transport": "webhook-v1",
+  "capabilities": [
+    "alerts",
+    "device-status",
+    "coordinates",
+    "addresses"
+  ],
+  "description": "Generic HMAC-SHA256 webhook event gateway. Sends verified normalized observations to the existing map event stream.",
+  "configFields": [
+    {
+      "key": "sharedSecret",
+      "label": "HMAC signing secret",
+      "type": "password",
+      "required": true
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "open-map-monitor.runtime/v1",
+  "id": "juniper.mist",
+  "version": "1.0.0",
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "entrypoint": "src/index.mjs",
+  "permissions": {
+    "networkHosts": [
+      "api.mist.com",
+      "api.eu.mist.com",
+      "api.gc1.mist.com",
+      "api.gc2.mist.com",
+      "api.gc3.mist.com",
+      "api.gc4.mist.com",
+      "api.gc5.mist.com",
+      "api.gc6.mist.com",
+      "api.gc7.mist.com",
+      "api.ac2.mist.com",
+      "api.ac5.mist.com",
+      "api.ac6.mist.com"
+    ],
+    "secrets": [
+      "apiToken",
+      "webhookSecret"
+    ],
+    "localCollectorRequired": false
+  },
+  "hooks": [
+    "initialize",
+    "health",
+    "enable",
+    "disable",
+    "stop",
+    "discover",
+    "poll",
+    "webhook",
+    "configChanged"
+  ],
+  "pollIntervalMs": 180000
+}

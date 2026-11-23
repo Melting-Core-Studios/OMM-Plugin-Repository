@@ -1,0 +1,7 @@
+{
+  "name": "cisco.meraki",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {}
+}

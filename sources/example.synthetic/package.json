@@ -1,0 +1,7 @@
+{
+  "name": "example.synthetic",
+  "version": "1.0.1",
+  "type": "module",
+  "private": true,
+  "dependencies": {}
+}

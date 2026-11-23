@@ -1,0 +1,24 @@
+{
+  "schema": "open-map-monitor.runtime/v1",
+  "id": "example.synthetic",
+  "version": "1.0.1",
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "entrypoint": "src/index.mjs",
+  "permissions": {
+    "networkHosts": [],
+    "secrets": [],
+    "localCollectorRequired": false
+  },
+  "hooks": [
+    "initialize",
+    "health",
+    "enable",
+    "disable",
+    "stop",
+    "discover",
+    "poll",
+    "webhook",
+    "configChanged"
+  ],
+  "pollIntervalMs": 180000
+}

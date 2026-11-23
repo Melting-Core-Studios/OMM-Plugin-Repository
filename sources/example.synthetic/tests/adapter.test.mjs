@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {createPlugin} from '../src/index.mjs';
+test('reference worker emits offline observation on discovery',async()=>{const events=[];const plugin=createPlugin({emit:x=>events.push(...x),now:()=>new Date().toISOString()});assert.equal(plugin.health().ok,true);plugin.enable();plugin.discover();assert.equal(events[0].status,'offline');});

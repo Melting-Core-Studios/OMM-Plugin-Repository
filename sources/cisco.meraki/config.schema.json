@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "orgId": {
+      "type": "string"
+    },
+    "apiKey": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

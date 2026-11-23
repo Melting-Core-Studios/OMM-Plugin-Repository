@@ -1,0 +1,308 @@
+{
+  "schema": "open-map-monitor.repository/v1",
+  "generatedAt": "2026-11-23T08:52:32.595Z",
+  "keyId": "primary",
+  "plugins": [
+    {
+      "id": "cisco.meraki",
+      "latest": "1.0.0",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "channel": "stable",
+          "manifest": {
+            "apiVersion": "open-map-monitor.plugin/v1",
+            "id": "cisco.meraki",
+            "name": "Cisco Meraki",
+            "publisher": "Open Map Monitor Community",
+            "version": "1.0.0",
+            "transport": "webhook-v1",
+            "capabilities": [
+              "device-status",
+              "sites",
+              "addresses",
+              "coordinates"
+            ],
+            "description": "Meraki Dashboard organization networks and device status polling; preserves verified device addresses and coordinates when returned.",
+            "configFields": [
+              {
+                "key": "orgId",
+                "label": "Organization ID",
+                "type": "text",
+                "required": true
+              },
+              {
+                "key": "apiKey",
+                "label": "Meraki Dashboard API key",
+                "type": "password",
+                "required": true
+              }
+            ]
+          },
+          "api": {
+            "min": "open-map-monitor.plugin/v1",
+            "max": "open-map-monitor.plugin/v1"
+          },
+          "permissions": {
+            "networkHosts": [
+              "api.meraki.com"
+            ],
+            "secrets": [
+              "apiKey"
+            ],
+            "localCollectorRequired": false
+          },
+          "package": {
+            "url": "packages/cisco.meraki/1.0.0/cisco.meraki-1.0.0.zip",
+            "sha256": "ea9c80915a274158e7299a98363fec4268bf48ed127c8e286c9c2ac8db866f5d",
+            "bytes": 5186,
+            "keyId": "primary",
+            "signature": "6FuCA6mVSiXzIk4H8W4ugRDtzOd/D9ELLCuXeG0UYl8YOzenE0TUamv5qXYHs47OJzDq+rjceS5+FfXA2NMTDQ=="
+          },
+          "publisher": "Open Map Monitor Community",
+          "capabilities": [
+            "device-status",
+            "sites",
+            "addresses",
+            "coordinates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "example.synthetic",
+      "latest": "1.0.1",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "channel": "stable",
+          "manifest": {
+            "apiVersion": "open-map-monitor.plugin/v1",
+            "id": "example.synthetic",
+            "name": "Synthetic Reference Monitor",
+            "publisher": "Open Map Monitor Community",
+            "version": "1.0.0",
+            "transport": "webhook-v1",
+            "capabilities": [
+              "alerts",
+              "device-status"
+            ],
+            "description": "Offline executable reference adapter for local development and integration tests.",
+            "configFields": []
+          },
+          "api": {
+            "min": "open-map-monitor.plugin/v1",
+            "max": "open-map-monitor.plugin/v1"
+          },
+          "permissions": {
+            "networkHosts": [],
+            "secrets": [],
+            "localCollectorRequired": false
+          },
+          "package": {
+            "url": "packages/example.synthetic/1.0.0/example.synthetic-1.0.0.zip",
+            "sha256": "ee8d513a750a87e6f6944dbed0fcb1add69bf14d7d55172ede1dda66e7937710",
+            "bytes": 3125,
+            "keyId": "primary",
+            "signature": "mffPlMUshQ9YLSzlG7VMZfGnfzSUpYlzOAKEDP6yTppTi9KAbPLrbDFG3RAcAFY2CjYoWnlyEddZIBr4nVfsAg=="
+          },
+          "publisher": "Open Map Monitor Community",
+          "capabilities": [
+            "alerts",
+            "device-status"
+          ]
+        },
+        {
+          "version": "1.0.1",
+          "channel": "stable",
+          "manifest": {
+            "apiVersion": "open-map-monitor.plugin/v1",
+            "id": "example.synthetic",
+            "name": "Synthetic Reference Monitor",
+            "publisher": "Open Map Monitor Community",
+            "version": "1.0.1",
+            "transport": "webhook-v1",
+            "capabilities": [
+              "alerts",
+              "device-status"
+            ],
+            "description": "Offline executable reference adapter for local development and integration tests.",
+            "configFields": []
+          },
+          "api": {
+            "min": "open-map-monitor.plugin/v1",
+            "max": "open-map-monitor.plugin/v1"
+          },
+          "permissions": {
+            "networkHosts": [],
+            "secrets": [],
+            "localCollectorRequired": false
+          },
+          "package": {
+            "url": "packages/example.synthetic/1.0.1/example.synthetic-1.0.1.zip",
+            "sha256": "e58cd9259bf9160c0c61648edd83b31f0418595b112d305f4ba0474cfa71394b",
+            "bytes": 3125,
+            "keyId": "primary",
+            "signature": "AL+Dr7ANPACeGGW09FBY8ARj+OXbZqTvNdsFGLNGZN364espJG0oW9P+FqbC7Es61UMGIMEJdp8a294lK1Q2DQ=="
+          },
+          "publisher": "Open Map Monitor Community",
+          "capabilities": [
+            "alerts",
+            "device-status"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "generic.signed-webhook",
+      "latest": "1.0.0",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "channel": "stable",
+          "manifest": {
+            "apiVersion": "open-map-monitor.plugin/v1",
+            "id": "generic.signed-webhook",
+            "name": "Signed JSON Webhook",
+            "publisher": "Open Map Monitor Community",
+            "version": "1.0.0",
+            "transport": "webhook-v1",
+            "capabilities": [
+              "alerts",
+              "device-status",
+              "coordinates",
+              "addresses"
+            ],
+            "description": "Generic HMAC-SHA256 webhook event gateway. Sends verified normalized observations to the existing map event stream.",
+            "configFields": [
+              {
+                "key": "sharedSecret",
+                "label": "HMAC signing secret",
+                "type": "password",
+                "required": true
+              }
+            ]
+          },
+          "api": {
+            "min": "open-map-monitor.plugin/v1",
+            "max": "open-map-monitor.plugin/v1"
+          },
+          "permissions": {
+            "networkHosts": [],
+            "secrets": [
+              "sharedSecret"
+            ],
+            "localCollectorRequired": false
+          },
+          "package": {
+            "url": "packages/generic.signed-webhook/1.0.0/generic.signed-webhook-1.0.0.zip",
+            "sha256": "d9ccba963b7936d2590ef0a135d34f026fdf85e19789cd6bd5fb7747ace4e180",
+            "bytes": 4141,
+            "keyId": "primary",
+            "signature": "jy5nQtV8LwHWDr3a/UId9fYybgSzhbHUg3C7wdMGeKjEX7zj8wrsDROf9Fvz+TmYD2F5yXKhzD+Y96X74MPOCA=="
+          },
+          "publisher": "Open Map Monitor Community",
+          "capabilities": [
+            "alerts",
+            "device-status",
+            "coordinates",
+            "addresses"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "juniper.mist",
+      "latest": "1.0.0",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "channel": "stable",
+          "manifest": {
+            "apiVersion": "open-map-monitor.plugin/v1",
+            "id": "juniper.mist",
+            "name": "Juniper Mist",
+            "publisher": "Open Map Monitor Community",
+            "version": "1.0.0",
+            "transport": "webhook-v1",
+            "capabilities": [
+              "alerts",
+              "device-status",
+              "sites",
+              "addresses",
+              "coordinates"
+            ],
+            "description": "Mist org inventory, device connectivity, site address discovery and signed HMAC webhook receiver.",
+            "configFields": [
+              {
+                "key": "host",
+                "label": "API host",
+                "type": "text",
+                "required": true
+              },
+              {
+                "key": "orgId",
+                "label": "Organization ID",
+                "type": "text",
+                "required": true
+              },
+              {
+                "key": "apiToken",
+                "label": "API token",
+                "type": "password",
+                "required": true
+              },
+              {
+                "key": "webhookSecret",
+                "label": "Webhook signing secret",
+                "type": "password",
+                "required": false
+              }
+            ]
+          },
+          "api": {
+            "min": "open-map-monitor.plugin/v1",
+            "max": "open-map-monitor.plugin/v1"
+          },
+          "permissions": {
+            "networkHosts": [
+              "api.mist.com",
+              "api.eu.mist.com",
+              "api.gc1.mist.com",
+              "api.gc2.mist.com",
+              "api.gc3.mist.com",
+              "api.gc4.mist.com",
+              "api.gc5.mist.com",
+              "api.gc6.mist.com",
+              "api.gc7.mist.com",
+              "api.ac2.mist.com",
+              "api.ac5.mist.com",
+              "api.ac6.mist.com"
+            ],
+            "secrets": [
+              "apiToken",
+              "webhookSecret"
+            ],
+            "localCollectorRequired": false
+          },
+          "package": {
+            "url": "packages/juniper.mist/1.0.0/juniper.mist-1.0.0.zip",
+            "sha256": "c97908360d24316d00ce1950f87c9310491498fca87f6687127a3eb17324b3ab",
+            "bytes": 8320,
+            "keyId": "primary",
+            "signature": "WCX1znUc2Y0/Y6MT5jzaja07hb/S9OWYSIiGqemwxD3DyeO7fXySLa2mdTbw8dYxruMQU1mj+n8t8F2mlxNvDw=="
+          },
+          "publisher": "Open Map Monitor Community",
+          "capabilities": [
+            "alerts",
+            "device-status",
+            "sites",
+            "addresses",
+            "coordinates"
+          ]
+        }
+      ]
+    }
+  ],
+  "signature": "ISzIuxhxgZw8JkAxsXa6JudhMkgKHlehqZFb5mEtpAn83FdaA9iixISC9EOwc9rf1lekTy4WoiKjjN82SXCNAg=="
+}
