@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "receiverSecret": {
+      "type": "string"
+    },
+    "highSeverityOffline": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

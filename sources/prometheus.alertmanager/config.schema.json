@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "receiverSecret": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

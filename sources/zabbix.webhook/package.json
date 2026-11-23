@@ -1,0 +1,10 @@
+{
+  "name": "@open-map-monitor/zabbix.webhook",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {}
+}

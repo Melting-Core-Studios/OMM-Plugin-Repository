@@ -1,44 +1,65 @@
-# Open Map Monitor plugin repository
+# Open Map Monitor — plugin catalogue
 
-This repository publishes installable monitoring adapters for Open Map Monitor. Administrators browse it from the Plugins menu, download verified packages, manage updates and configure their integration credentials in Backoffice → Plugin settings.
+Install monitoring integrations for **Open Map Monitor** from the application's **Plugins** menu. Each plugin is a standalone, signed ZIP that contains its executable adapter code and setup instructions. Images and vendor logos are not included.
 
-Every release is an immutable ZIP with runnable ESM code, a runtime manifest, installation metadata, configuration schema, README and license. **Plugin archives contain no images.** The signed `repo.json` records each available version, release channel, compatible API contract, permissions, package URL, SHA-256 hash and detached Ed25519 signature. Older releases remain available for rollback.
+## Available integrations
 
-## Included adapters
+| Integration | Data source | What it monitors |
+| --- | --- | --- |
+| Juniper Mist | Juniper Mist API and signed webhook | Organization/site inventory, devices, outages and recoveries |
+| Cisco Meraki | Meraki Dashboard API | Networks, devices, connectivity and known physical addresses |
+| Ubiquiti UniFi Site Manager | Official UniFi cloud API | Devices, site inventory, status and available coordinates |
+| Prometheus Alertmanager | Authenticated Alertmanager webhook | Firing alerts, resolved alerts and device status |
+| Zabbix Alert Webhook | Custom Zabbix media type | Host trigger problems, recoveries and severity |
+| Signed JSON Webhook | HMAC-SHA256 JSON webhook | Generic normalized monitoring observations |
+| Synthetic Reference Monitor | Offline test adapter | Installation and rollback testing; **not for production monitoring** |
 
-- **Juniper Mist 1.0.0:** organization/site inventory, device connectivity and authenticated webhook normalization.
-- **Cisco Meraki 1.0.0:** organization, network, device and physical-address information using the Meraki API where provided.
-- **Generic Signed Webhook 1.0.0:** HMAC-authenticated JSON observations for systems with a compatible webhook feed.
-- **Synthetic Test Adapter 1.0.0 and 1.0.1:** deterministic integration test plugin for installation, update and rollback validation; not intended for live monitoring.
+Vendor authentication details and configuration are available in the respective `sources/<plugin-id>/README.md` files. API-based plugins may require an account subscription, appropriate permissions or compatible device firmware. Integrations not providing verified addresses can still be linked to branches manually.
 
-## Repository integrity
+## Installing a plugin
 
-Run `node scripts/validate-repo.mjs` and `npm test` to verify the index and release archives. The included releases are signed with a **reference development publisher key**; adopt your own production Ed25519 signing key before serving a production installation. Only public keys belong in the published repository.
+1. Sign in to Open Map Monitor as an administrator and open **Plugins**.
+2. Choose a plugin and select **Install**. The server downloads and verifies its signed package.
+3. Open **Backoffice → Plugin settings → [Plugin name]** and configure the required credentials or webhook secret. Credentials are retained server-side; they are not delivered to the browser as plaintext.
+4. Enable the plugin and run discovery/connection diagnostics, then map any unmatched devices to branches.
+5. Monitor plugin health and update availability from **Plugins**. You can disable, update, roll back or uninstall an adapter without removing unrelated branch data.
 
-To publish with a production key, store the private key outside the source tree and run:
+### Using the GitHub-hosted catalogue
 
-```bash
-export PLUGIN_SIGNING_PRIVATE_KEY_FILE=/secure/publisher.pem
-export PLUGIN_SIGNING_KEY_ID=production-v1
-node scripts/rekey-all.mjs production-v1
-node scripts/validate-repo.mjs
+The repository can be hosted publicly on GitHub without an additional application or GitHub access token. Configure the application's `PLUGIN_REPOSITORY_URL` to the raw HTTPS URL of this repository's `repo.json`, for example:
+
+```text
+https://raw.githubusercontent.com/OWNER/REPOSITORY/main/repo.json
 ```
 
-Host `repo.json` and the packages folder on a trusted HTTPS origin, such as Azure Blob Storage with a CDN. Serve immutable archives with long cache lifetimes and the signed index with short caching. Upload package files **before** the newly signed index. Configure each application with the matching trusted public keys.
+The directory structure must stay intact: `repo.json` at the root and ZIP archives under `packages/`. Publish immutable package files before updating the signed index. The application must also trust the repository publisher public key IDs through `PLUGIN_TRUSTED_KEYS`; a public GitHub directory alone does **not** establish trust.
 
-## Publishing plugin updates
+## Signed releases
 
-Each plugin has its own source directory under `sources/`. Edit its implementation and increment the release version before running:
+`repo.json` contains release versions, package locations, capabilities, permissions, compatibility and cryptographic metadata. Every listed ZIP is checked using SHA-256 and a detached Ed25519 signature before extraction or execution. Old release archives remain accessible for rollback. No archives contain images, vendor logos or signing private keys.
 
-```bash
-node scripts/publish-plugin.mjs juniper.mist
+A trusted catalogue may use more than one public key during publisher-key rotation: one key verifies the index, while each ZIP is verified with its recorded key ID. The `keys/trusted-keys.json` file contains public keys only. Applications must pin the expected keys in their own environment; downloading a public key from GitHub is not sufficient to establish trust.
+
+## Repository administration
+
+To verify all published packages, run:
+
+```sh
 node scripts/validate-repo.mjs
+npm test
 ```
 
-The publishing script runs plugin tests, audits the ZIP, calculates its digest and size, verifies existing repository entries, signs the new release and atomically updates `repo.json` without discarding other plugins or previous versions. It rejects duplicate version publication. See `keys/PUBLISHING.md` for public-key rotation.
+The repository publisher uses a private Ed25519 signing key, stored **outside the public repository**. Publishing a new plugin or version automatically builds and tests the adapter, checks its package contents, creates an immutable release ZIP and atomically updates `repo.json` without losing prior plugins or rollback versions:
 
-## Installation and support
+```sh
+PLUGIN_SIGNING_PRIVATE_KEY_FILE=/secure/publisher.pem PLUGIN_SIGNING_KEY_ID=community-2026-11 \
+  node scripts/publish-plugin.mjs ubiquiti.unifi
+```
 
-Only trusted repositories configured by an administrator can install code. Plugin workers run server-side with restricted outbound HTTPS destinations; browsers do not receive executable packages or credentials. Mapping uses exact verified address evidence where possible and manual association otherwise.
+Consult `keys/PUBLISHING.md` for publisher key rotation and deployment ordering. Never commit private signing keys, tenant credentials, `.env` files, or customer data to this public repository.
 
-Reference adapters are verified with synthetic API fixtures rather than live vendor tokens. Check the provider's current API licensing, firmware, permissions, rate limits, pagination behavior and webhook signing requirements before using a plugin for operational alerting.
+## Compatibility and support
+
+These adapters use `open-map-monitor.plugin/v1` and require a compatible Open Map Monitor plugin engine. The contained tests use documented, simulated vendor responses. They do **not** constitute certification against a live vendor account, local hardware, production Azure deployment or the monitoring screen. Confirm status mappings, API rate limits, alert recoveries and branch associations before relying on any adapter for production incidents.
+
+This catalogue contains community integrations. The vendors do not endorse or maintain these packages.

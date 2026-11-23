@@ -1,0 +1,10 @@
+{
+  "name": "@open-map-monitor/prometheus.alertmanager",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {}
+}

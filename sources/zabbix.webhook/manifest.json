@@ -1,0 +1,29 @@
+{
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "id": "zabbix.webhook",
+  "name": "Zabbix Alert Webhook",
+  "publisher": "Open Map Monitor Community",
+  "version": "1.0.0",
+  "transport": "webhook-v1",
+  "capabilities": [
+    "alerts",
+    "device-status"
+  ],
+  "description": "Zabbix media type webhook for problem and recovery notifications, with stable host IDs and severity mapping.",
+  "configFields": [
+    {
+      "key": "receiverSecret",
+      "label": "Webhook receiver token",
+      "type": "password",
+      "required": true,
+      "help": "At least 32 unpredictable characters. Use the same token in the Zabbix media type."
+    },
+    {
+      "key": "highSeverityOffline",
+      "label": "Treat high/disaster as offline",
+      "type": "boolean",
+      "required": false,
+      "help": "Off by default: a severe problem does not necessarily mean a device is offline."
+    }
+  ]
+}

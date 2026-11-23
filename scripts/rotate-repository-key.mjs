@@ -15,4 +15,5 @@ repo.keyId=id;repo.generatedAt=new Date().toISOString();delete repo.signature;
 repo.signature=crypto.sign(null,Buffer.from(canonicalJson(repo)),key).toString('base64');
 verifyRepository(repo,keys,'https://example.invalid/plugins/repo.json');
 const tmp=repoPath+'.rotate.tmp';fs.writeFileSync(tmp,JSON.stringify(repo,null,2)+'\n');fs.renameSync(tmp,repoPath);
+fs.writeFileSync(path.join(root,'keys','trusted-public-key.txt'),publicKey+'\n');
 console.log(`Repository now signed by ${id}; all existing package signatures retained under their own key IDs.`);

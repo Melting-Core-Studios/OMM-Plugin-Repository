@@ -1,0 +1,23 @@
+{
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "id": "ubiquiti.unifi",
+  "name": "Ubiquiti UniFi Site Manager",
+  "publisher": "Open Map Monitor Community",
+  "version": "1.0.0",
+  "transport": "webhook-v1",
+  "capabilities": [
+    "device-status",
+    "sites",
+    "addresses",
+    "coordinates"
+  ],
+  "description": "Official cloud Site Manager API inventory and device connectivity. Location is retained only when explicitly provided by UniFi.",
+  "configFields": [
+    {
+      "key": "apiKey",
+      "label": "UniFi Site Manager API key",
+      "type": "password",
+      "required": true
+    }
+  ]
+}

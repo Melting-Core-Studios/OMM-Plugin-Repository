@@ -1,7 +1,7 @@
 {
   "schema": "open-map-monitor.repository/v1",
-  "generatedAt": "2026-11-23T08:52:32.595Z",
-  "keyId": "primary",
+  "generatedAt": "2026-11-23T12:52:12.764Z",
+  "keyId": "community-2026-11",
   "plugins": [
     {
       "id": "cisco.meraki",
@@ -302,7 +302,184 @@
           ]
         }
       ]
+    },
+    {
+      "id": "prometheus.alertmanager",
+      "latest": "1.0.0",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "channel": "stable",
+          "manifest": {
+            "apiVersion": "open-map-monitor.plugin/v1",
+            "id": "prometheus.alertmanager",
+            "name": "Prometheus Alertmanager",
+            "publisher": "Open Map Monitor Community",
+            "version": "1.0.0",
+            "transport": "webhook-v1",
+            "capabilities": [
+              "alerts",
+              "device-status"
+            ],
+            "description": "Authenticated Alertmanager webhook receiver with firing/recovery normalization; no vendor API access required.",
+            "configFields": [
+              {
+                "key": "receiverSecret",
+                "label": "Webhook receiver token",
+                "type": "password",
+                "required": true,
+                "help": "At least 32 unpredictable characters. Set as X-Plugin-Signature in Alertmanager http_config.http_headers."
+              }
+            ]
+          },
+          "api": {
+            "min": "open-map-monitor.plugin/v1",
+            "max": "open-map-monitor.plugin/v1"
+          },
+          "permissions": {
+            "networkHosts": [],
+            "secrets": [
+              "receiverSecret"
+            ],
+            "localCollectorRequired": false
+          },
+          "package": {
+            "url": "packages/prometheus.alertmanager/1.0.0/prometheus.alertmanager-1.0.0.zip",
+            "sha256": "4ad997b1d1f26700c6ad23fac8349d426b9d131951295e24310d88a283dfd3f5",
+            "bytes": 10588,
+            "keyId": "community-2026-11",
+            "signature": "AtaZ8SidAMLlMKM03ANgqT5rwJvAniwYd+NvvYeBLSuPM3B6bpG7JifQJq/pA7MZYdUaxarNk1IrFuwoBzVyDg=="
+          },
+          "publisher": "Open Map Monitor Community",
+          "capabilities": [
+            "alerts",
+            "device-status"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ubiquiti.unifi",
+      "latest": "1.0.0",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "channel": "stable",
+          "manifest": {
+            "apiVersion": "open-map-monitor.plugin/v1",
+            "id": "ubiquiti.unifi",
+            "name": "Ubiquiti UniFi Site Manager",
+            "publisher": "Open Map Monitor Community",
+            "version": "1.0.0",
+            "transport": "webhook-v1",
+            "capabilities": [
+              "device-status",
+              "sites",
+              "addresses",
+              "coordinates"
+            ],
+            "description": "Official cloud Site Manager API inventory and device connectivity. Location is retained only when explicitly provided by UniFi.",
+            "configFields": [
+              {
+                "key": "apiKey",
+                "label": "UniFi Site Manager API key",
+                "type": "password",
+                "required": true
+              }
+            ]
+          },
+          "api": {
+            "min": "open-map-monitor.plugin/v1",
+            "max": "open-map-monitor.plugin/v1"
+          },
+          "permissions": {
+            "networkHosts": [
+              "api.ui.com"
+            ],
+            "secrets": [
+              "apiKey"
+            ],
+            "localCollectorRequired": false
+          },
+          "package": {
+            "url": "packages/ubiquiti.unifi/1.0.0/ubiquiti.unifi-1.0.0.zip",
+            "sha256": "6147b240bac89df96d0c544baab94c5a429fae0635ac7feda6c26a31051d58f2",
+            "bytes": 10604,
+            "keyId": "community-2026-11",
+            "signature": "+LpDf0swD6LvdjKBEo2kxYcVQRebJ1p9HJ8ZjtUlZSp1kyDOcPYWQJ1Lo7wlTFpC+6gJvPTDCEmujBY3r/q2DA=="
+          },
+          "publisher": "Open Map Monitor Community",
+          "capabilities": [
+            "device-status",
+            "sites",
+            "addresses",
+            "coordinates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zabbix.webhook",
+      "latest": "1.0.0",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "channel": "stable",
+          "manifest": {
+            "apiVersion": "open-map-monitor.plugin/v1",
+            "id": "zabbix.webhook",
+            "name": "Zabbix Alert Webhook",
+            "publisher": "Open Map Monitor Community",
+            "version": "1.0.0",
+            "transport": "webhook-v1",
+            "capabilities": [
+              "alerts",
+              "device-status"
+            ],
+            "description": "Zabbix media type webhook for problem and recovery notifications, with stable host IDs and severity mapping.",
+            "configFields": [
+              {
+                "key": "receiverSecret",
+                "label": "Webhook receiver token",
+                "type": "password",
+                "required": true,
+                "help": "At least 32 unpredictable characters. Use the same token in the Zabbix media type."
+              },
+              {
+                "key": "highSeverityOffline",
+                "label": "Treat high/disaster as offline",
+                "type": "boolean",
+                "required": false,
+                "help": "Off by default: a severe problem does not necessarily mean a device is offline."
+              }
+            ]
+          },
+          "api": {
+            "min": "open-map-monitor.plugin/v1",
+            "max": "open-map-monitor.plugin/v1"
+          },
+          "permissions": {
+            "networkHosts": [],
+            "secrets": [
+              "receiverSecret"
+            ],
+            "localCollectorRequired": false
+          },
+          "package": {
+            "url": "packages/zabbix.webhook/1.0.0/zabbix.webhook-1.0.0.zip",
+            "sha256": "60b2bd52fbdd94273318929b0b8b1a22ba53052d253440d1d5326b1ea3fe3ae4",
+            "bytes": 10184,
+            "keyId": "community-2026-11",
+            "signature": "IKfXDX9FyS4/2uqLPGvAIB1IAqha5f+o3pkt0e72MTySW++fWEefgtWEWg8GL4LkcJkdn4AHS7yJYZTI/rMCAA=="
+          },
+          "publisher": "Open Map Monitor Community",
+          "capabilities": [
+            "alerts",
+            "device-status"
+          ]
+        }
+      ]
     }
   ],
-  "signature": "ISzIuxhxgZw8JkAxsXa6JudhMkgKHlehqZFb5mEtpAn83FdaA9iixISC9EOwc9rf1lekTy4WoiKjjN82SXCNAg=="
+  "signature": "dMePp7NiH2Y+EkfvTpgFbDrOBmvr7ptEoyh9ChYHGpXfVF8IGqUb8+t6Kw4IvZuJeCIaj8aS2VfUJAKce4fWBg=="
 }
