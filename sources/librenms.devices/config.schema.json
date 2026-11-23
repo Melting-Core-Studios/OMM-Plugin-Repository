@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "apiHost": {
+      "type": "string",
+      "minLength": 1
+    },
+    "apiToken": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "apiHost",
+    "apiToken"
+  ],
+  "additionalProperties": false
+}

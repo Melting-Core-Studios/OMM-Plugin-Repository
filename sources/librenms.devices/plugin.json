@@ -1,0 +1,26 @@
+{
+  "schema": "open-map-monitor.runtime/v1",
+  "id": "librenms.devices",
+  "version": "1.0.0",
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "entrypoint": "src/index.mjs",
+  "permissions": {
+    "networkHosts": [],
+    "secrets": [
+      "apiToken"
+    ],
+    "localCollectorRequired": false,
+    "configHostField": "apiHost"
+  },
+  "hooks": [
+    "initialize",
+    "configChanged",
+    "enable",
+    "disable",
+    "stop",
+    "health",
+    "discover",
+    "poll"
+  ],
+  "pollIntervalMs": 300000
+}

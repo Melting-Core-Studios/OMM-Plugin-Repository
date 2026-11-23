@@ -1,0 +1,32 @@
+{
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "id": "fortinet.fortigate",
+  "name": "Fortinet FortiGate (FortiOS)",
+  "publisher": "Open Map Monitor Community",
+  "version": "1.0.0",
+  "transport": "webhook-v1",
+  "capabilities": [
+    "device-status"
+  ],
+  "description": "Monitor FortiOS appliance reachability and optional interface health via the official HTTPS REST API.",
+  "configFields": [
+    {
+      "key": "apiHost",
+      "label": "FortiGate public HTTPS hostname",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "apiToken",
+      "label": "FortiOS REST API administrator token",
+      "type": "password",
+      "required": true
+    },
+    {
+      "key": "interfaceName",
+      "label": "Critical interface name (optional)",
+      "type": "text",
+      "required": false
+    }
+  ]
+}

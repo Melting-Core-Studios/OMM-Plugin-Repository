@@ -1,0 +1,33 @@
+{
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "id": "fortinet.fortimanager",
+  "name": "Fortinet FortiManager",
+  "publisher": "Open Map Monitor Community",
+  "version": "1.0.0",
+  "transport": "webhook-v1",
+  "capabilities": [
+    "device-status",
+    "sites"
+  ],
+  "description": "Read-only managed-device inventory and connection state from FortiManager JSON-RPC (specified ADOM).",
+  "configFields": [
+    {
+      "key": "apiHost",
+      "label": "FortiManager public HTTPS hostname",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "apiToken",
+      "label": "FortiManager JSON API bearer token",
+      "type": "password",
+      "required": true
+    },
+    {
+      "key": "adom",
+      "label": "FortiManager ADOM",
+      "type": "text",
+      "required": true
+    }
+  ]
+}

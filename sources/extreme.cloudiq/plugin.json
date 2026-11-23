@@ -1,0 +1,27 @@
+{
+  "schema": "open-map-monitor.runtime/v1",
+  "id": "extreme.cloudiq",
+  "version": "1.0.0",
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "entrypoint": "src/index.mjs",
+  "permissions": {
+    "networkHosts": [
+      "api.extremecloudiq.com"
+    ],
+    "secrets": [
+      "password"
+    ],
+    "localCollectorRequired": false
+  },
+  "hooks": [
+    "initialize",
+    "configChanged",
+    "enable",
+    "disable",
+    "stop",
+    "health",
+    "discover",
+    "poll"
+  ],
+  "pollIntervalMs": 300000
+}

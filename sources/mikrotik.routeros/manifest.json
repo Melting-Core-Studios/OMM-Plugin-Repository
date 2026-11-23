@@ -1,0 +1,38 @@
+{
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "id": "mikrotik.routeros",
+  "name": "MikroTik RouterOS",
+  "publisher": "Open Map Monitor Community",
+  "version": "1.0.0",
+  "transport": "webhook-v1",
+  "capabilities": [
+    "device-status"
+  ],
+  "description": "Monitor a RouterOS v7 router over its official read-only HTTPS REST interface.",
+  "configFields": [
+    {
+      "key": "apiHost",
+      "label": "RouterOS public HTTPS hostname",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "username",
+      "label": "RouterOS read-only username",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "password",
+      "label": "RouterOS password",
+      "type": "password",
+      "required": true
+    },
+    {
+      "key": "interfaceName",
+      "label": "Critical interface (optional)",
+      "type": "text",
+      "required": false
+    }
+  ]
+}

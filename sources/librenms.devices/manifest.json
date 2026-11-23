@@ -1,0 +1,28 @@
+{
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "id": "librenms.devices",
+  "name": "LibreNMS",
+  "publisher": "Open Map Monitor Community",
+  "version": "1.0.0",
+  "transport": "webhook-v1",
+  "capabilities": [
+    "device-status",
+    "sites",
+    "addresses"
+  ],
+  "description": "Poll LibreNMS API v0 managed devices, device connectivity and provider-reported location strings.",
+  "configFields": [
+    {
+      "key": "apiHost",
+      "label": "LibreNMS public HTTPS hostname",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "apiToken",
+      "label": "LibreNMS API token",
+      "type": "password",
+      "required": true
+    }
+  ]
+}

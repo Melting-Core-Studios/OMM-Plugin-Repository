@@ -1,0 +1,29 @@
+{
+  "apiVersion": "open-map-monitor.plugin/v1",
+  "id": "extreme.cloudiq",
+  "name": "Extreme Networks ExtremeCloud IQ",
+  "publisher": "Open Map Monitor Community",
+  "version": "1.0.0",
+  "transport": "webhook-v1",
+  "capabilities": [
+    "device-status",
+    "sites",
+    "addresses",
+    "coordinates"
+  ],
+  "description": "Official ExtremeCloud IQ login, paginated device status and verified site address discovery.",
+  "configFields": [
+    {
+      "key": "username",
+      "label": "ExtremeCloud IQ account email",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "password",
+      "label": "ExtremeCloud IQ password",
+      "type": "password",
+      "required": true
+    }
+  ]
+}

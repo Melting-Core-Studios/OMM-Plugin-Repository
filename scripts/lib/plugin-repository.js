@@ -30,6 +30,7 @@ export function verifyRepository(data,keys,rootUrl){
    if(manifest.id!==plugin.id||manifest.version!==v.version)throw error('Release manifest ID/version mismatch');
    if(!HEX.test(v.package?.sha256)||!Number.isSafeInteger(v.package?.bytes)||v.package.bytes<100||v.package.bytes>8*1024*1024||typeof v.package.signature!=='string')throw error('Invalid package digest or signature');
    if(!Array.isArray(v.permissions?.networkHosts)||v.permissions.networkHosts.length>20||v.permissions.networkHosts.some(h=>typeof h!=='string'||!/^[a-z0-9*.-]+$/i.test(h)))throw error('Invalid network permissions');
+   if(v.permissions.configHostField!==undefined&&!v.manifest.configFields?.some(f=>f.key===v.permissions.configHostField&&f.type==='text'&&f.required))throw error('Configurable network hostname requires a required text config field');
    if(!v.api||v.api.min!=='open-map-monitor.plugin/v1'||v.api.max!=='open-map-monitor.plugin/v1')throw error('Incompatible plugin API');
    if(typeof v.package.url!=='string'||!/^packages\/[a-z0-9.-]+\/\d+\.\d+\.\d+(?:-[\da-z.-]+)?\/[a-z0-9.-]+\.zip$/i.test(v.package.url))throw error('Unsafe package path');
    const packageUrl=new URL(v.package.url,new URL('.',base));
@@ -81,6 +82,7 @@ export function validateRuntime(runtime,manifest,permissions,files){
  if(canonicalJson(runtime.permissions)!==canonicalJson(permissions))throw error('Package permissions differ from repository');
  if(!Array.isArray(runtime.hooks)||!runtime.hooks.includes('health')||!runtime.hooks.includes('initialize')||runtime.hooks.some(x=>!['initialize','health','enable','disable','stop','uninstall','discover','poll','webhook','configChanged'].includes(x)))throw error('Invalid runtime lifecycle');
  if(!Array.isArray(permissions.networkHosts)||!Array.isArray(permissions.secrets)||permissions.secrets.some(x=>!manifest.configFields?.some(f=>f.type==='password'&&f.key===x)))throw error('Invalid secret grants');
+ if(permissions.configHostField!==undefined&&!manifest.configFields?.some(f=>f.key===permissions.configHostField&&f.type==='text'&&f.required))throw error('Configurable network host must be a required text field');
  if(files.has('config.schema.json')){try{JSON.parse(files.get('config.schema.json'));}catch{throw error('Malformed plugin config schema');}}
  const packageMeta=JSON.parse(files.get('package.json'));
  if(packageMeta.dependencies&&Object.keys(packageMeta.dependencies).length)throw error('Plugin must bundle all production dependencies');

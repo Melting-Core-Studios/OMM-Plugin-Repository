@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "apiHost": {
+      "type": "string",
+      "minLength": 1
+    },
+    "username": {
+      "type": "string",
+      "minLength": 1
+    },
+    "password": {
+      "type": "string",
+      "minLength": 1
+    },
+    "interfaceName": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "apiHost",
+    "username",
+    "password"
+  ],
+  "additionalProperties": false
+}

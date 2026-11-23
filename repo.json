@@ -1,6 +1,6 @@
 {
   "schema": "open-map-monitor.repository/v1",
-  "generatedAt": "2026-11-23T12:52:12.764Z",
+  "generatedAt": "2026-11-23T13:17:46.523Z",
   "keyId": "community-2026-11",
   "plugins": [
     {
@@ -154,6 +154,204 @@
       ]
     },
     {
+      "id": "extreme.cloudiq",
+      "latest": "1.0.0",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "channel": "stable",
+          "manifest": {
+            "apiVersion": "open-map-monitor.plugin/v1",
+            "id": "extreme.cloudiq",
+            "name": "Extreme Networks ExtremeCloud IQ",
+            "publisher": "Open Map Monitor Community",
+            "version": "1.0.0",
+            "transport": "webhook-v1",
+            "capabilities": [
+              "device-status",
+              "sites",
+              "addresses",
+              "coordinates"
+            ],
+            "description": "Official ExtremeCloud IQ login, paginated device status and verified site address discovery.",
+            "configFields": [
+              {
+                "key": "username",
+                "label": "ExtremeCloud IQ account email",
+                "type": "text",
+                "required": true
+              },
+              {
+                "key": "password",
+                "label": "ExtremeCloud IQ password",
+                "type": "password",
+                "required": true
+              }
+            ]
+          },
+          "api": {
+            "min": "open-map-monitor.plugin/v1",
+            "max": "open-map-monitor.plugin/v1"
+          },
+          "permissions": {
+            "networkHosts": [
+              "api.extremecloudiq.com"
+            ],
+            "secrets": [
+              "password"
+            ],
+            "localCollectorRequired": false
+          },
+          "package": {
+            "url": "packages/extreme.cloudiq/1.0.0/extreme.cloudiq-1.0.0.zip",
+            "sha256": "ce0149c1c6907272722100cf20fb2912fdac94fc725bab18e0a2cb1b06e9f04e",
+            "bytes": 21037,
+            "keyId": "community-2026-11",
+            "signature": "oV9rtAg8ZrMC0H9ulQyksBswx3AdNm/yAUQVYIPZDiHnl+igxE0vTeRoS3lDy6tYoW/TwVjrUehwu/+00eTYDA=="
+          },
+          "publisher": "Open Map Monitor Community",
+          "capabilities": [
+            "device-status",
+            "sites",
+            "addresses",
+            "coordinates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fortinet.fortigate",
+      "latest": "1.0.0",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "channel": "stable",
+          "manifest": {
+            "apiVersion": "open-map-monitor.plugin/v1",
+            "id": "fortinet.fortigate",
+            "name": "Fortinet FortiGate (FortiOS)",
+            "publisher": "Open Map Monitor Community",
+            "version": "1.0.0",
+            "transport": "webhook-v1",
+            "capabilities": [
+              "device-status"
+            ],
+            "description": "Monitor FortiOS appliance reachability and optional interface health via the official HTTPS REST API.",
+            "configFields": [
+              {
+                "key": "apiHost",
+                "label": "FortiGate public HTTPS hostname",
+                "type": "text",
+                "required": true
+              },
+              {
+                "key": "apiToken",
+                "label": "FortiOS REST API administrator token",
+                "type": "password",
+                "required": true
+              },
+              {
+                "key": "interfaceName",
+                "label": "Critical interface name (optional)",
+                "type": "text",
+                "required": false
+              }
+            ]
+          },
+          "api": {
+            "min": "open-map-monitor.plugin/v1",
+            "max": "open-map-monitor.plugin/v1"
+          },
+          "permissions": {
+            "networkHosts": [],
+            "secrets": [
+              "apiToken"
+            ],
+            "localCollectorRequired": false,
+            "configHostField": "apiHost"
+          },
+          "package": {
+            "url": "packages/fortinet.fortigate/1.0.0/fortinet.fortigate-1.0.0.zip",
+            "sha256": "712a54f157b5152d640089f5fca88972ef8a9d8338ffa019227e077025ddf248",
+            "bytes": 20599,
+            "keyId": "community-2026-11",
+            "signature": "nGXnXqiRG0xsxpsgOGodUFs8lWXMCk3sVMQ2H967wsTLxkx5tEwmizj8zhvG9663DH4Ao1ba0pUEEYuJc78ZDw=="
+          },
+          "publisher": "Open Map Monitor Community",
+          "capabilities": [
+            "device-status"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fortinet.fortimanager",
+      "latest": "1.0.0",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "channel": "stable",
+          "manifest": {
+            "apiVersion": "open-map-monitor.plugin/v1",
+            "id": "fortinet.fortimanager",
+            "name": "Fortinet FortiManager",
+            "publisher": "Open Map Monitor Community",
+            "version": "1.0.0",
+            "transport": "webhook-v1",
+            "capabilities": [
+              "device-status",
+              "sites"
+            ],
+            "description": "Read-only managed-device inventory and connection state from FortiManager JSON-RPC (specified ADOM).",
+            "configFields": [
+              {
+                "key": "apiHost",
+                "label": "FortiManager public HTTPS hostname",
+                "type": "text",
+                "required": true
+              },
+              {
+                "key": "apiToken",
+                "label": "FortiManager JSON API bearer token",
+                "type": "password",
+                "required": true
+              },
+              {
+                "key": "adom",
+                "label": "FortiManager ADOM",
+                "type": "text",
+                "required": true
+              }
+            ]
+          },
+          "api": {
+            "min": "open-map-monitor.plugin/v1",
+            "max": "open-map-monitor.plugin/v1"
+          },
+          "permissions": {
+            "networkHosts": [],
+            "secrets": [
+              "apiToken"
+            ],
+            "localCollectorRequired": false,
+            "configHostField": "apiHost"
+          },
+          "package": {
+            "url": "packages/fortinet.fortimanager/1.0.0/fortinet.fortimanager-1.0.0.zip",
+            "sha256": "ca43d78ddc116c14890099c2cdd03d9abda6fa16b0834cc8ae1c542924c19d3b",
+            "bytes": 20438,
+            "keyId": "community-2026-11",
+            "signature": "dkJtttyGMymD0oZ5G6icoryiDYljfBnBpAoEWnmRfxHPSbzC3MksOOCqEkCdi2M6u2V68b8YobLnU6FYqzkyDw=="
+          },
+          "publisher": "Open Map Monitor Community",
+          "capabilities": [
+            "device-status",
+            "sites"
+          ]
+        }
+      ]
+    },
+    {
       "id": "generic.signed-webhook",
       "latest": "1.0.0",
       "versions": [
@@ -299,6 +497,140 @@
             "sites",
             "addresses",
             "coordinates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "librenms.devices",
+      "latest": "1.0.0",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "channel": "stable",
+          "manifest": {
+            "apiVersion": "open-map-monitor.plugin/v1",
+            "id": "librenms.devices",
+            "name": "LibreNMS",
+            "publisher": "Open Map Monitor Community",
+            "version": "1.0.0",
+            "transport": "webhook-v1",
+            "capabilities": [
+              "device-status",
+              "sites",
+              "addresses"
+            ],
+            "description": "Poll LibreNMS API v0 managed devices, device connectivity and provider-reported location strings.",
+            "configFields": [
+              {
+                "key": "apiHost",
+                "label": "LibreNMS public HTTPS hostname",
+                "type": "text",
+                "required": true
+              },
+              {
+                "key": "apiToken",
+                "label": "LibreNMS API token",
+                "type": "password",
+                "required": true
+              }
+            ]
+          },
+          "api": {
+            "min": "open-map-monitor.plugin/v1",
+            "max": "open-map-monitor.plugin/v1"
+          },
+          "permissions": {
+            "networkHosts": [],
+            "secrets": [
+              "apiToken"
+            ],
+            "localCollectorRequired": false,
+            "configHostField": "apiHost"
+          },
+          "package": {
+            "url": "packages/librenms.devices/1.0.0/librenms.devices-1.0.0.zip",
+            "sha256": "57b44e7dd93f7c7cbd8647091e84a239cac26dffbb4204e6333ddb401bf10d51",
+            "bytes": 19546,
+            "keyId": "community-2026-11",
+            "signature": "jNxWBQ8i0+HRrRzkhBf77waymZC243MRmfK9/Y+eyeDUHhh7gtAMdEPS65sBdMSpx3oUqiDSJfG5rLHr2QVWAw=="
+          },
+          "publisher": "Open Map Monitor Community",
+          "capabilities": [
+            "device-status",
+            "sites",
+            "addresses"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mikrotik.routeros",
+      "latest": "1.0.0",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "channel": "stable",
+          "manifest": {
+            "apiVersion": "open-map-monitor.plugin/v1",
+            "id": "mikrotik.routeros",
+            "name": "MikroTik RouterOS",
+            "publisher": "Open Map Monitor Community",
+            "version": "1.0.0",
+            "transport": "webhook-v1",
+            "capabilities": [
+              "device-status"
+            ],
+            "description": "Monitor a RouterOS v7 router over its official read-only HTTPS REST interface.",
+            "configFields": [
+              {
+                "key": "apiHost",
+                "label": "RouterOS public HTTPS hostname",
+                "type": "text",
+                "required": true
+              },
+              {
+                "key": "username",
+                "label": "RouterOS read-only username",
+                "type": "text",
+                "required": true
+              },
+              {
+                "key": "password",
+                "label": "RouterOS password",
+                "type": "password",
+                "required": true
+              },
+              {
+                "key": "interfaceName",
+                "label": "Critical interface (optional)",
+                "type": "text",
+                "required": false
+              }
+            ]
+          },
+          "api": {
+            "min": "open-map-monitor.plugin/v1",
+            "max": "open-map-monitor.plugin/v1"
+          },
+          "permissions": {
+            "networkHosts": [],
+            "secrets": [
+              "password"
+            ],
+            "localCollectorRequired": false,
+            "configHostField": "apiHost"
+          },
+          "package": {
+            "url": "packages/mikrotik.routeros/1.0.0/mikrotik.routeros-1.0.0.zip",
+            "sha256": "2a10a088a17381225907081a129c779a19de533b247bd698dec1f51fc6745314",
+            "bytes": 20136,
+            "keyId": "community-2026-11",
+            "signature": "FsoK0GNQIgfq/+fX0YZkmQqGOCtt7v8W8GQg3oAyfVE1VqHfR2yI3bxHRqxnxeT/TJhgzFBtx5uremk/x90lCQ=="
+          },
+          "publisher": "Open Map Monitor Community",
+          "capabilities": [
+            "device-status"
           ]
         }
       ]
@@ -481,5 +813,5 @@
       ]
     }
   ],
-  "signature": "dMePp7NiH2Y+EkfvTpgFbDrOBmvr7ptEoyh9ChYHGpXfVF8IGqUb8+t6Kw4IvZuJeCIaj8aS2VfUJAKce4fWBg=="
+  "signature": "UxwQQhA0EKn+fZYmbIYwrYPlnNXN+ezuzaCcmd/+wSRpJNk/SnP1bhDsaLgQeIh+Afva+NwnbggDV+fuau8NDA=="
 }
