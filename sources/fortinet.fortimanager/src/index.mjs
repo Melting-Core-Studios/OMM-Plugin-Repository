@@ -17,7 +17,7 @@ export function createPlugin(ctx){
     const id=identity(d.sn,d.serial,d.serial_number,d.name);if(!id||seen.has(id))continue;seen.add(id);
     const connection=status(d.conn_status??d.connect_status??d.connection_status);
     const config=String(d.conf_status||'').toLowerCase();
-    events.push({deviceId:id,name:identity(d.hostname,d.name,id),siteId:adom,status:connection==='online'&&['outofsync','out-of-sync','modified'].includes(config)?'degraded':connection,timestamp:now});
+    events.push({deviceId:id,name:identity(d.hostname,d.name,id),siteId:null,status:connection==='online'&&['outofsync','out-of-sync','modified'].includes(config)?'degraded':connection,timestamp:now});
    }
    emitBatches(ctx,events);s.error=null;s.lastSync=now;s.devices=events.length;return {ok:true,devices:events.length,adom};
   }catch(e){s.error=e.message;throw e;}

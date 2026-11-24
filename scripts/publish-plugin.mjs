@@ -16,7 +16,7 @@ export function build(id){
  const tests=path.join(source,'tests');
  if(fs.existsSync(tests)){const files=fs.readdirSync(tests).filter(x=>x.endsWith('.test.mjs'));if(files.length){const t=spawnSync(process.execPath,['--test',...files.map(x=>path.join(tests,x))],{encoding:'utf8'});if(t.status!==0)throw Error(`Plugin tests failed: ${t.stderr||t.stdout}`);}}
  const entries={};const crawl=(dir,rel='')=>{for(const ent of fs.readdirSync(dir,{withFileTypes:true})){
-  if(ent.name.startsWith('.')||ent.name==='tests')continue;const next=rel?`${rel}/${ent.name}`:ent.name;
+  if(ent.name.startsWith('.')||ent.name==='tests'||ent.name.endsWith(':Zone.Identifier'))continue;const next=rel?`${rel}/${ent.name}`:ent.name;
   if(ent.isSymbolicLink())throw Error('Symlinks prohibited');if(ent.isDirectory())crawl(path.join(dir,ent.name),next);
   else if(ent.isFile()){if(/\.(png|jpe?g|svg|gif|webp|ico|bmp|tiff)$/i.test(next))throw Error('Images prohibited');entries[next]=fs.readFileSync(path.join(dir,ent.name));}
  }};crawl(source);

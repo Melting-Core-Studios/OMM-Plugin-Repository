@@ -1,7 +1,7 @@
 {
   "schema": "open-map-monitor.runtime/v1",
   "id": "librenms.devices",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "apiVersion": "open-map-monitor.plugin/v1",
   "entrypoint": "src/index.mjs",
   "permissions": {

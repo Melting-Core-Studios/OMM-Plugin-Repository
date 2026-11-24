@@ -11,7 +11,7 @@ export function createPlugin(ctx){
    for(const d of list){
     const id=identity(d.serial,d.device_id,d.hostname);if(!id||seen.has(id))continue;seen.add(id);
     const disabled=d.disabled==1||d.ignore==1;
-    events.push({deviceId:id,siteId:identity(d.location_id)||null,name:identity(d.display,d.sysName,d.hostname,id),status:disabled?'unknown':status(d.status),timestamp:now,address:text(d.location,300)||undefined,latitude:coordinate(d.lat,-90,90),longitude:coordinate(d.lng,-180,180)});
+    events.push({deviceId:id,siteId:identity(d.location_id)||null,name:identity(d.display,d.sysName,d.hostname,id),status:disabled?'unknown':status(d.status),timestamp:now,address:s.config.manualMappingOnly===true?undefined:text(d.location,300)||undefined,latitude:s.config.manualMappingOnly===true?null:coordinate(d.lat,-90,90),longitude:s.config.manualMappingOnly===true?null:coordinate(d.lng,-180,180)});
    }
    emitBatches(ctx,events);s.devices=events.length;s.error=null;s.lastSync=now;return {ok:true,devices:events.length};
   }catch(e){s.error=e.message;throw e;}

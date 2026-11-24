@@ -3,20 +3,20 @@
   "id": "prometheus.alertmanager",
   "name": "Prometheus Alertmanager",
   "publisher": "Open Map Monitor Community",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "transport": "webhook-v1",
   "capabilities": [
     "alerts",
     "device-status"
   ],
-  "description": "Authenticated Alertmanager webhook receiver with firing/recovery normalization; no vendor API access required.",
+  "description": "Authenticated Alertmanager webhook receiver with firing/recovery normalization; no vendor API access required. Uses native manual device-to-branch mapping.",
   "configFields": [
     {
       "key": "receiverSecret",
       "label": "Webhook receiver token",
       "type": "password",
       "required": true,
-      "help": "At least 32 unpredictable characters. Set as X-Plugin-Signature in Alertmanager http_config.http_headers."
+      "help": "At least 32 unpredictable characters. Set as X-Plugin-Signature in Alertmanager http_config.http_headers. Devices appear in the native mapper after their first accepted observation."
     }
   ]
 }

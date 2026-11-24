@@ -3,18 +3,19 @@
   "id": "mikrotik.routeros",
   "name": "MikroTik RouterOS",
   "publisher": "Open Map Monitor Community",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "transport": "webhook-v1",
   "capabilities": [
     "device-status"
   ],
-  "description": "Monitor a RouterOS v7 router over its official read-only HTTPS REST interface.",
+  "description": "Monitor a RouterOS v7 router over its official read-only HTTPS REST interface. Uses native manual device-to-branch mapping.",
   "configFields": [
     {
       "key": "apiHost",
       "label": "RouterOS public HTTPS hostname",
       "type": "text",
-      "required": true
+      "required": true,
+      "help": "Map discovered devices under Device-to-branch mapping in this plugin\u2019s settings."
     },
     {
       "key": "username",

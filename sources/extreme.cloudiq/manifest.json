@@ -3,7 +3,7 @@
   "id": "extreme.cloudiq",
   "name": "Extreme Networks ExtremeCloud IQ",
   "publisher": "Open Map Monitor Community",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "transport": "webhook-v1",
   "capabilities": [
     "device-status",
@@ -11,19 +11,27 @@
     "addresses",
     "coordinates"
   ],
-  "description": "Official ExtremeCloud IQ login, paginated device status and verified site address discovery.",
+  "description": "Official ExtremeCloud IQ login, paginated device status and verified site address discovery. Supports native manual branch mapping when location data is missing or disabled.",
   "configFields": [
     {
       "key": "username",
       "label": "ExtremeCloud IQ account email",
       "type": "text",
-      "required": true
+      "required": true,
+      "help": "Map discovered devices under Device-to-branch mapping in this plugin\u2019s settings."
     },
     {
       "key": "password",
       "label": "ExtremeCloud IQ password",
       "type": "password",
       "required": true
+    },
+    {
+      "key": "manualMappingOnly",
+      "label": "Manual branch mapping only",
+      "type": "boolean",
+      "required": false,
+      "help": "Suppress location hints on future observations. Assign devices to existing branches below. Existing saved mappings are retained; review them manually."
     }
   ]
 }

@@ -6,6 +6,10 @@
     },
     "apiKey": {
       "type": "string"
+    },
+    "manualMappingOnly": {
+      "type": "boolean",
+      "default": false
     }
   },
   "additionalProperties": false

@@ -30,7 +30,7 @@ export function createPlugin(ctx){
     const site=siteMap.get(siteId),location=site?.location||site;
     const address=addr(site?.address)||undefined;
     const lat=coordinate(location?.latitude??location?.lat,-90,90),lng=coordinate(location?.longitude??location?.lng,-180,180);
-    events.push({deviceId:id,siteId:siteId||null,name:identity(d.hostname,d.name,id),status:status(d.connected),timestamp:now,address,latitude:lat,longitude:lng});
+    events.push({deviceId:id,siteId:siteId||null,name:identity(d.hostname,d.name,id),status:status(d.connected),timestamp:now,address:s.config.manualMappingOnly===true?undefined:address,latitude:s.config.manualMappingOnly===true?null:lat,longitude:s.config.manualMappingOnly===true?null:lng});
    }
    emitBatches(ctx,events);s.lastSync=now;s.devices=events.length;s.sites=sites.length;s.error=null;return {ok:true,devices:s.devices,sites:s.sites};
   }catch(e){s.error=e.message;throw e;}

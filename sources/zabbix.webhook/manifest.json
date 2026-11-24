@@ -3,20 +3,20 @@
   "id": "zabbix.webhook",
   "name": "Zabbix Alert Webhook",
   "publisher": "Open Map Monitor Community",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "transport": "webhook-v1",
   "capabilities": [
     "alerts",
     "device-status"
   ],
-  "description": "Zabbix media type webhook for problem and recovery notifications, with stable host IDs and severity mapping.",
+  "description": "Zabbix media type webhook for problem and recovery notifications, with stable host IDs and severity mapping. Uses native manual device-to-branch mapping.",
   "configFields": [
     {
       "key": "receiverSecret",
       "label": "Webhook receiver token",
       "type": "password",
       "required": true,
-      "help": "At least 32 unpredictable characters. Use the same token in the Zabbix media type."
+      "help": "At least 32 unpredictable characters. Use the same token in the Zabbix media type. Devices appear in the native mapper after their first accepted observation."
     },
     {
       "key": "highSeverityOffline",

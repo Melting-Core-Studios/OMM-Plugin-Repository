@@ -28,3 +28,18 @@ Zabbix macros used in some event types can be unavailable; this adapter delibera
 Official documentation: https://www.zabbix.com/documentation/current/en/manual/config/notifications/media/webhook
 
 Tested using synthetic media-type notifications; a live Zabbix installation has not been tested.
+
+## Native branch mapping
+
+A host appears only after its first accepted problem observation. Use a controlled test problem and matching recovery with the real host ID to prepare mapping. A recovery alone does not register a new host.
+
+The mapping key is: Zabbix `host_id` (not the display name). Device names may be changed without losing an assignment as long as this key is unchanged.
+
+1. Create or import branches in Open Map Monitor using its existing branch management or workbook import.
+2. Open **Backoffice → Plugin settings → Zabbix Alert Webhook**.
+3. Under **Device-to-branch mapping**, select **Refresh devices**, search for the device, and select the correct existing branch.
+4. Confirm the branch status updates on the live map. Assign additional devices to the same branch as needed. No second location file or plugin-specific branch list is required.
+
+Mappings are stored by Open Map Monitor, not the adapter. They survive subsequent observations and plugin updates when the device ID stays the same. Unmapped devices do not contribute to branch status.
+
+These are alert receivers, not full host inventories. Hosts that never emit a problem cannot be pre-mapped using this adapter alone.

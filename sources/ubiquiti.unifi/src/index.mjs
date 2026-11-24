@@ -1,6 +1,5 @@
 // Official UniFi Site Manager (cloud) adapter. No local-controller credentials,
 // private network access or undocumented /proxy/network APIs are required.
-const state={config:{},lastSync:null,lastError:null,devices:0,sites:0,pages:0};
 const hasText=value=>typeof value==='string'&&value.trim().length>0;
 const str=value=>hasText(value)?value.trim():'';
 const point=value=>typeof value==='number'&&Number.isFinite(value)?value:null;
@@ -49,6 +48,7 @@ function extractList(response,kind){
  throw new Error(`UniFi ${kind} response does not contain a device/site list`);
 }
 export function createPlugin(ctx){
+ const state={config:{},lastSync:null,lastError:null,devices:0,sites:0,pages:0};
  async function page(url){
   const result=await ctx.request({url,headers:{'X-API-KEY':state.config.apiKey,Accept:'application/json'}});
   if(result.status===401||result.status===403)throw Error(`UniFi API key rejected (HTTP ${result.status})`);
@@ -92,7 +92,7 @@ export function createPlugin(ctx){
     const site=siteMap.get(sid);
     const coords=coordinates(site,device);
     events.push({deviceId:key,siteId:sid||null,name:str(device.name||device.model||device.meta?.name)||key,
-     status:connectivity(device),timestamp:now,address:physicalAddress(device)||physicalAddress(site),...coords});
+     status:connectivity(device),timestamp:now,address:state.config.manualMappingOnly===true?undefined:physicalAddress(device)||physicalAddress(site),...(state.config.manualMappingOnly===true?{latitude:null,longitude:null}:coords)});
    }
    // The host ingestion contract accepts no more than 100 events per batch.
    for(let i=0;i<events.length;i+=100)ctx.emit(events.slice(i,i+100));

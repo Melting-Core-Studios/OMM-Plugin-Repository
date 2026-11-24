@@ -3,13 +3,12 @@
   "id": "fortinet.fortimanager",
   "name": "Fortinet FortiManager",
   "publisher": "Open Map Monitor Community",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "transport": "webhook-v1",
   "capabilities": [
-    "device-status",
-    "sites"
+    "device-status"
   ],
-  "description": "Read-only managed-device inventory and connection state from FortiManager JSON-RPC (specified ADOM).",
+  "description": "Read-only managed-device inventory and connection state from FortiManager JSON-RPC (specified ADOM). Uses native manual device-to-branch mapping.",
   "configFields": [
     {
       "key": "apiHost",
@@ -27,7 +26,8 @@
       "key": "adom",
       "label": "FortiManager ADOM",
       "type": "text",
-      "required": true
+      "required": true,
+      "help": "Map discovered devices under Device-to-branch mapping in this plugin\u2019s settings."
     }
   ]
 }

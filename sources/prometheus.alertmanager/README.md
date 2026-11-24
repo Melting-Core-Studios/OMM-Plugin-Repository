@@ -28,3 +28,18 @@ This webhook accepts up to 100 alerts per notification. For older Alertmanager c
 Official documentation: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
 
 Tested with documented sample messages, not a live Alertmanager deployment.
+
+## Native branch mapping
+
+A host appears only after its first accepted firing observation. To prepare mapping, send a controlled test notification with the same stable device ID, then its matching recovery; do not use production outage severity for the test. Keep device identity labels consistent across alerts and recoveries.
+
+The mapping key is: `device_id` label, falling back to `device`, `instance`, `hostname` or `host`. Device names may be changed without losing an assignment as long as this key is unchanged.
+
+1. Create or import branches in Open Map Monitor using its existing branch management or workbook import.
+2. Open **Backoffice → Plugin settings → Prometheus Alertmanager**.
+3. Under **Device-to-branch mapping**, select **Refresh devices**, search for the device, and select the correct existing branch.
+4. Confirm the branch status updates on the live map. Assign additional devices to the same branch as needed. No second location file or plugin-specific branch list is required.
+
+Mappings are stored by Open Map Monitor, not the adapter. They survive subsequent observations and plugin updates when the device ID stays the same. Unmapped devices do not contribute to branch status.
+
+These are alert receivers, not full host inventories. Hosts that never emit a problem cannot be pre-mapped using this adapter alone.

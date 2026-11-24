@@ -13,3 +13,18 @@ API credentials are stored by the Open Map Monitor host, encrypted for the tenan
 ## Source and support
 
 See the vendor official API documentation and your firmware/API permissions. Live vendor access is required to confirm compatibility with your deployment.
+
+## Native branch mapping
+
+Run **Synchronize inventory** after enabling. Devices with no assigned or usable site location still appear.
+
+The mapping key is: Device serial, MAC or API ID, in existing priority order. Device names may be changed without losing an assignment as long as this key is unchanged.
+
+1. Create or import branches in Open Map Monitor using its existing branch management or workbook import.
+2. Open **Backoffice → Plugin settings → Extreme Networks ExtremeCloud IQ**.
+3. Under **Device-to-branch mapping**, select **Refresh devices**, search for the device, and select the correct existing branch.
+4. Confirm the branch status updates on the live map. Assign additional devices to the same branch as needed. No second location file or plugin-specific branch list is required.
+
+Mappings are stored by Open Map Monitor, not the adapter. They survive subsequent observations and plugin updates when the device ID stays the same. Unmapped devices do not contribute to branch status.
+
+Enable **Manual branch mapping only** if provider location data should not be used. It removes address and coordinate hints from future observations while retaining device identity, logical site and status. This setting does not delete or change existing automatic or manual assignments; review and correct any existing assignments in the native mapper. With the switch off, verified location data is passed through as before.

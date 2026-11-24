@@ -3,7 +3,7 @@
   "id": "ubiquiti.unifi",
   "name": "Ubiquiti UniFi Site Manager",
   "publisher": "Open Map Monitor Community",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "transport": "webhook-v1",
   "capabilities": [
     "device-status",
@@ -11,13 +11,21 @@
     "addresses",
     "coordinates"
   ],
-  "description": "Official cloud Site Manager API inventory and device connectivity. Location is retained only when explicitly provided by UniFi.",
+  "description": "Official cloud Site Manager API inventory and device connectivity. Location is retained only when explicitly provided by UniFi. Supports native manual branch mapping when location data is missing or disabled.",
   "configFields": [
     {
       "key": "apiKey",
       "label": "UniFi Site Manager API key",
       "type": "password",
-      "required": true
+      "required": true,
+      "help": "Map discovered devices under Device-to-branch mapping in this plugin\u2019s settings."
+    },
+    {
+      "key": "manualMappingOnly",
+      "label": "Manual branch mapping only",
+      "type": "boolean",
+      "required": false,
+      "help": "Suppress location hints on future observations. Assign devices to existing branches below. Existing saved mappings are retained; review them manually."
     }
   ]
 }

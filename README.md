@@ -24,6 +24,14 @@ Vendor authentication details and configuration are available in the respective 
 4. Enable the plugin and run discovery/connection diagnostics, then map any unmatched devices to branches.
 5. Monitor plugin health and update availability from **Plugins**. You can disable, update, roll back or uninstall an adapter without removing unrelated branch data.
 
+### Manual location mapping
+
+The application owns the branch database and mappings. Import your workbook or create branches in the existing branch management interface; do not maintain a second location list inside a plugin. After enabling a polling adapter, choose **Synchronize inventory** in its plugin settings, then **Refresh devices** in **Device-to-branch mapping**. For webhook adapters, first send an authenticated observation with a stable device ID. Select an existing branch for each device. Several devices can share one branch. Saved assignments persist across polls and compatible plugin updates when the device ID is unchanged.
+
+FortiGate, FortiManager, RouterOS, Alertmanager and Zabbix use manual assignments for physical locations. Meraki, ExtremeCloud IQ, LibreNMS, UniFi and the signed JSON gateway also support **Manual branch mapping only** starting with their 1.0.1 releases: when enabled, future observations omit location hints, while retaining identity, status and logical site IDs. Existing assignments are not automatically cleared or changed; review them in the native mapper. The default preserves provider-supplied location data.
+
+Alertmanager and Zabbix do not enumerate every host. Hosts appear after their first accepted firing/problem observation; test a problem and its matching recovery in a controlled environment before relying on the map. The generic JSON gateway can accept a real initial observation with `status: unknown` where appropriate, but must not replace an existing live status with an invented discovery event.
+
 ### Using the GitHub-hosted catalogue
 
 The repository can be hosted publicly on GitHub without an additional application or GitHub access token. Configure the application's `PLUGIN_REPOSITORY_URL` to the raw HTTPS URL of this repository's `repo.json`, for example:

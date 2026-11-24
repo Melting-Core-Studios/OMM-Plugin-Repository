@@ -3,26 +3,34 @@
   "id": "librenms.devices",
   "name": "LibreNMS",
   "publisher": "Open Map Monitor Community",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "transport": "webhook-v1",
   "capabilities": [
     "device-status",
     "sites",
     "addresses"
   ],
-  "description": "Poll LibreNMS API v0 managed devices, device connectivity and provider-reported location strings.",
+  "description": "Poll LibreNMS API v0 managed devices, device connectivity and provider-reported location strings. Supports native manual branch mapping when location data is missing or disabled.",
   "configFields": [
     {
       "key": "apiHost",
       "label": "LibreNMS public HTTPS hostname",
       "type": "text",
-      "required": true
+      "required": true,
+      "help": "Map discovered devices under Device-to-branch mapping in this plugin\u2019s settings."
     },
     {
       "key": "apiToken",
       "label": "LibreNMS API token",
       "type": "password",
       "required": true
+    },
+    {
+      "key": "manualMappingOnly",
+      "label": "Manual branch mapping only",
+      "type": "boolean",
+      "required": false,
+      "help": "Suppress location hints on future observations. Assign devices to existing branches below. Existing saved mappings are retained; review them manually."
     }
   ]
 }

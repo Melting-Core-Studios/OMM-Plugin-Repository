@@ -8,6 +8,10 @@
     "password": {
       "type": "string",
       "minLength": 1
+    },
+    "manualMappingOnly": {
+      "type": "boolean",
+      "default": false
     }
   },
   "required": [
